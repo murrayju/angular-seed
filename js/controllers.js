@@ -1,0 +1,13 @@
+define([],	function () {
+	var ctrl = {};
+
+	ctrl.BaseCtrl = ['$scope', 'MessageService', function ($scope, msg) {
+		$scope.msg = msg;
+	}];
+
+	ctrl.P1Ctrl = ['$scope', function ($scope) {
+		$scope.data = 'Check out this data binding!';
+	}];
+
+	return ctrl;
+});

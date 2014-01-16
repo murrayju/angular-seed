@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>My Web App</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Prevent this page from being cached -->
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="-1" />
+	
+	<link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css">
+	<link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,700,600" rel="stylesheet">
+	<link rel="stylesheet" href="css/style.css"/>
+</head>
+
+	<body ng-controller="BaseCtrl">
+		<header class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#" class="navbar-brand">My Web App</a>
+				</div>
+
+				<div class="navbar-collapse collapse ng-cloak">
+					<ul class="nav navbar-nav">
+						<li ui-sref-active="active">
+							<a ui-sref="link1">Link 1</a>
+						</li>
+						<li ui-sref-active="active">
+							<a ui-sref="link2">Link 2</a>
+						</li>
+					</ul>
+
+					<ul class="ng-cloak nav navbar-nav navbar-right">
+						<li class="dropdown" ng-show="msg.messages.length">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<span class="badge">{{msg.messages.length}}</span> <i class="fa fa-exclamation"></i>
+							</a>
+							<div class="dropdown-menu" role="menu" style="width: 500px; max-height: 250px; overflow-y: scroll;">
+								<table class="table table-condensed">
+									<tbody>
+										<tr
+											ng-repeat="message in msg.messages"
+											ng-class="{'danger':message.error}">
+											<td>
+												<i class="fa" ng-class="{'fa-thumbs-up': !message.error, 'fa-warning': message.error}"></i>
+											</td>
+											<td>
+												{{message.txt}}
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</header>
+
+		<div id="wrap">
+			<div id="view" class="ng-cloak">
+				<div id="alertMsgs">
+					<div class="container">
+						<!--[if lt IE 9]>
+							<div class="alert alert-dismissable alert-warning">
+								<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+								<i class="fa fa-warning"></i>
+								You are using an old version of Internet Explorer.
+								For better and safer browsing experience please <a href="http://www.microsoft.com/IE9">upgrade IE</a>
+								or install <a href="http://google.com/chrome">Google Chrome browser</a>.
+							</div>
+						<![endif]-->
+						<div ng-show="msg.last()"
+							 class="alert alert-dismissable"
+						     ng-class="{'alert-success': !msg.last().error, 'alert-danger': msg.last().error}">
+								<button type="button" class="close" aria-hidden="true" ng-click="msg.last().dismissed = true">&times;</button>
+								<i class="fa" ng-class="{'fa-thumbs-up': !msg.last().error, 'fa-warning': msg.last().error}"></i>
+								{{msg.last().txt}}
+						</div>
+					</div>
+				</div>
+
+				<div ui-view></div>
+			</div>
+		</div>
+
+		<footer>
+			<div class="container">
+				<p class="text-muted credit">Copyright &copy; 2014 <a href="http://yourcompany.com">Your Company</a>.</p>
+			</div>
+		</footer>
+
+		<script src="/bower_components/requirejs/require.js" data-main="js/app"></script>
+	</body>
+</html>
