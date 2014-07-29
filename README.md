@@ -6,9 +6,11 @@ This is a seed project for a modern web app. It combines the use of Angularjs, B
 + [Node](http://nodejs.org/)
 + [npm](http://npmjs.org/)
 + [Bower](http://bower.io)
++ [Grunt](http://gruntjs.com)
 
 ```
 npm install -g bower
+npm install -g grunt-cli
 ```
 
 ## Quick start
@@ -18,11 +20,17 @@ npm install -g bower
 ```
 git clone git://github.com/murrayju/angular-seed.git
 ```
-###### Use Bower to download dependencies
+###### Download the dependencies
 
 ```
+npm install
 bower install
 ```
+###### Build the code
+```
+grunt
+```
+
 ###### Run the test server
 
 ```

@@ -1,34 +1,25 @@
 {
-  "name": "angular-seed",
-  "version": "0.0.0",
-  "authors": [
-    "Justin Murray <murrayju@addpcs.com>"
-  ],
-  "description": "A seed project for angularjs web applications",
-  "main": "js/app.js",
-  "keywords": [
-    "angularjs",
-    "requirejs",
-    "bootstrap",
-    "seed"
-  ],
-  "license": "MIT",
-  "homepage": "http://github.com/murrayju",
-  "private": true,
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "requirejs": "*",
-    "angular": "*",
-    "jQuery": "*",
-    "bootstrap": "*",
-    "angular-ui-router": "0.2.7",
-    "fastclick": "*",
-    "font-awesome": "*"
-  }
+    "name": "angular-seed",
+    "description": "A seed project for angularjs web applications",
+    "private": true,
+    "dependencies": {
+        "requirejs": "~2.1",
+        "almond": "~0.2",
+        "require-css": "~0.1",
+        "angular": "~1.2",
+        "angular-animate": "~1.2",
+        "angular-mocks": "~1.2",
+        "angular-resource": "~1.2",
+        "angular-sanitize": "~1.2",
+        "angular-strap": "~2.0",
+        "angular-motion": "~0.3",
+        "bootstrap-additions": "~0.2",
+        "angular-ui-router": "~0.2",
+        "jquery": "~1.11",
+        "fastclick": "~1",
+        "moment": "~2",
+        "underscore": "~1",
+        "fontawesome": "~4",
+        "require-less": "~0.1"
+    }
 }
