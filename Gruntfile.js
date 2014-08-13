@@ -153,6 +153,26 @@ module.exports = function (grunt) {
                     singleRun: true
                 }
             }
+        },
+
+        // Test web server
+        connect: {
+            dev: {
+                options: {
+                    port: 9000,
+                    debug: true,
+                    keepalive: true,
+                    open: 'http://localhost:9000/src/'
+                }
+            },
+            dist: {
+                options: {
+                    port: 9001,
+                    base: 'dist',
+                    keepalive: true,
+                    open: 'http://localhost:9001/'
+                }
+            }
         }
     });
 
