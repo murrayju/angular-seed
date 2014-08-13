@@ -44,20 +44,25 @@ module.exports = function (grunt) {
 
         // inline angular templates
         ngtemplates: {
+            options: {
+                htmlmin: {
+                    collapseWhitespace: true,
+                    removeComments: true
+                },
+                bootstrap: function (module, script) {
+                    return "define('app.templates', [], function() { return ['$templateCache', function ($templateCache) {" + script + "}]; });";
+                }
+            },
             app: {
                 src: 'template/**.html',
                 cwd: 'src',
                 dest: 'dist/app.js',
-                options: {
-                    htmlmin: {
-                        collapseWhitespace: true,
-                        removeComments: true
-                    },
-                    bootstrap: function (module, script) {
-                        return "define('app.templates', [], function() { return ['$templateCache', function ($templateCache) {" + script + "}]; });";
-                    },
-                    append: true
-                }
+                options: { append: true }
+            },
+            test: {
+                src: 'template/**.html',
+                cwd: 'src',
+                dest: 'test/app.templates.js',
             }
         },
 
@@ -113,25 +118,11 @@ module.exports = function (grunt) {
                     // list of files / patterns to load in the browser
                     files: [
                         'test/test-main.js',
-                        {
-                            pattern: 'src/js/**/*',
-                            included: false
-                        },
-                        {
-                            pattern: 'src/less/**/*',
-                            included: false
-                        },
-                        {
-                            pattern: 'bower_components/**/*',
-                            included: false
-                        },
-                        {
-                            pattern: 'test/**/*Spec.js',
-                            included: false
-                        }
+                        {pattern: 'test/**/*.js', included: false},
+                        {pattern: 'src/js/**/*', included: false},
+                        {pattern: 'src/less/**/*', included: false},
+                        {pattern: 'bower_components/**/*', included: false}
                     ],
-
-                    exclude: ['src/js/bootstrap.js'],
 
                     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
                     reporters: ['dots', 'junit'],
@@ -166,7 +157,7 @@ module.exports = function (grunt) {
     });
 
     // Default task(s).
-    grunt.registerTask('test', ['jslint', 'karma']);
-    grunt.registerTask('build', ['requirejs', 'ngtemplates', 'uglify', 'processhtml']);
+    grunt.registerTask('test', ['jslint', 'ngtemplates:test', 'karma']);
+    grunt.registerTask('build', ['requirejs', 'ngtemplates:app', 'uglify', 'processhtml']);
     grunt.registerTask('default', ['test', 'build']);
 };
